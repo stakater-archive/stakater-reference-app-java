@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @Configuration
+@SuppressWarnings("All")
 class GraphConfiguration extends Neo4jConfiguration {
 
     @Autowired

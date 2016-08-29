@@ -11,33 +11,36 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AccountServiceV1 {
-
+public class AccountServiceV1
+{
     private AccountRepository accountRepository;
     private OAuth2RestTemplate oAuth2RestTemplate;
 
     @Autowired
-    public AccountServiceV1(AccountRepository accountRepository,
-                            @LoadBalanced OAuth2RestTemplate oAuth2RestTemplate) {
+    public AccountServiceV1(AccountRepository accountRepository, @LoadBalanced OAuth2RestTemplate oAuth2RestTemplate)
+    {
         this.accountRepository = accountRepository;
         this.oAuth2RestTemplate = oAuth2RestTemplate;
     }
 
-    public List<Account> getUserAccounts() {
-        List<Account> account = null;
+    public List<Account> getUserAccounts()
+    {
+        List<Account> accounts = null;
         User user = oAuth2RestTemplate.getForObject("http://user-service/uaa/v1/me", User.class);
-        if (user != null) {
-            account = accountRepository.findAccountsByUserId(user.getUsername());
+        if (user != null)
+        {
+            accounts = accountRepository.findAccountsByUserId(user.getUsername());
         }
 
         // Mask credit card numbers
-        if (account != null) {
-            account.forEach(acct -> acct.getCreditCards()
+        if (accounts != null)
+        {
+            accounts.forEach(acct -> acct.getCreditCards()
                     .forEach(card ->
                             card.setNumber(card.getNumber()
                                     .replaceAll("([\\d]{4})(?!$)", "****-"))));
         }
 
-        return account;
+        return accounts;
     }
 }

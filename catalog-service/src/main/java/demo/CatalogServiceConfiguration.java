@@ -11,14 +11,12 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableHystrix
-public class CatalogServiceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(CatalogServiceApplication.class, args);
-    }
-
+public class CatalogServiceConfiguration
+{
     @LoadBalanced
     @Bean
-    public RestTemplate loadRestTemplate() {
+    public RestTemplate loadRestTemplate()
+    {
         return new RestTemplate();
     }
 }

@@ -42,6 +42,10 @@ This reference application uses the following mixture of databases.
 * MongoDB - Document Store
 * Redis - Key/value Store
 
+All the backing databases can be run in docker using the other docker compose file i.e.
+
+`docker-compose -f docker-compose-backing.yml up -d`
+
 ### Integration Testing
 
 If you would like to use Docker for integration testing, a `docker-compose.yml` file has been provided in the root directory. To build all the images, first make sure that you have Docker installed and available in your command line tool. With Docker and Docker Compose installed, execute the provided `run.sh` script. This script will build each container and start each of the services and database dependencies. When all the services have started up. Verify that the services are registered with Eureka at `http://$DOCKER_IP:8761`.

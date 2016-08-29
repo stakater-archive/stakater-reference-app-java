@@ -10,17 +10,20 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
 @Configuration
-public class AuthorizationServerConfig extends WebSecurityConfigurerAdapter {
-
+@SuppressWarnings("All")
+public class AuthorizationServerConfig extends WebSecurityConfigurerAdapter
+{
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
+    {
         auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+            .inMemoryAuthentication()
+            .withUser("user").password("password").roles("USER");
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception
+    {
         http
                 .authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
@@ -38,15 +41,17 @@ public class AuthorizationServerConfig extends WebSecurityConfigurerAdapter {
 
     @Configuration
     @EnableAuthorizationServer
-    protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
-
+    protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter
+    {
         @Override
-        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        public void configure(ClientDetailsServiceConfigurer clients) throws Exception
+        {
             clients.inMemory()
                     .withClient("acme")
                     .secret("acmesecret")
                     .authorizedGrantTypes("authorization_code", "refresh_token",
-                            "password").scopes("openid");
+                            "password")
+                    .scopes("openid");
         }
     }
 }

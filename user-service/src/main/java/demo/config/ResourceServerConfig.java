@@ -9,18 +9,21 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter
+{
     @Override
-    public void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception
+    {
         http
-                .authorizeRequests()
-                .antMatchers("/resources/**", "/login").permitAll()
-                .anyRequest()
-                .authenticated();
+            .authorizeRequests()
+            .antMatchers("/resources/**", "/login").permitAll()
+            .anyRequest()
+            .authenticated();
     }
 
     @Bean
-    HttpSessionSecurityContextRepository contextRepository() {
+    HttpSessionSecurityContextRepository contextRepository()
+    {
         return new HttpSessionSecurityContextRepository();
     }
 }

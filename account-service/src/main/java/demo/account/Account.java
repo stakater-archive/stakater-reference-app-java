@@ -16,8 +16,8 @@ import java.util.Set;
  * @author Josh Long
  */
 @Entity
-public class Account extends BaseEntity {
-
+public class Account extends BaseEntity
+{
     private Long id;
     private String userId;
     private String accountNumber;

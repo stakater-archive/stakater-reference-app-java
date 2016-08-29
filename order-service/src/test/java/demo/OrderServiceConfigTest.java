@@ -22,11 +22,11 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = OrderApplication.class)
+@SpringApplicationConfiguration(classes = OrderServiceConfig.class)
 @WebIntegrationTest
-public class OrderApplicationTest extends TestCase {
+public class OrderServiceConfigTest extends TestCase {
 
-    private Logger log = LoggerFactory.getLogger(OrderApplicationTest.class);
+    private Logger log = LoggerFactory.getLogger(OrderServiceConfigTest.class);
     private Boolean mongoConnection = true;
 
     @Autowired

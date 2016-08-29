@@ -12,17 +12,19 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/v1")
-public class AccountControllerV1 {
-
+public class AccountControllerV1
+{
     private AccountServiceV1 accountService;
 
     @Autowired
-    public AccountControllerV1(AccountServiceV1 accountService) {
+    public AccountControllerV1(AccountServiceV1 accountService)
+    {
         this.accountService = accountService;
     }
 
     @RequestMapping(path = "/accounts")
-    public ResponseEntity getUserAccount() throws Exception {
+    public ResponseEntity getUserAccount() throws Exception
+    {
         return Optional.ofNullable(accountService.getUserAccounts())
                 .map(a -> new ResponseEntity<List<Account>>(a, HttpStatus.OK))
                 .orElseThrow(() -> new Exception("Accounts for user do not exist"));

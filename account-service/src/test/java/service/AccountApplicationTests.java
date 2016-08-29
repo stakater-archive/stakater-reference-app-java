@@ -1,6 +1,6 @@
 package service;
 
-import demo.AccountApplication;
+import demo.AccountServiceConfig;
 import demo.account.Account;
 import demo.address.Address;
 import demo.address.AddressType;
@@ -20,7 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = AccountApplication.class)
+@SpringApplicationConfiguration(classes = AccountServiceConfig.class)
 @ActiveProfiles(profiles = "test")
 @WebIntegrationTest
 public class AccountApplicationTests extends TestCase {
@@ -28,7 +28,7 @@ public class AccountApplicationTests extends TestCase {
     private Logger log = LoggerFactory.getLogger(AccountApplicationTests.class);
 
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     @Test
     public void customerTest() {

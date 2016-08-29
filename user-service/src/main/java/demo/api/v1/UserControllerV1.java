@@ -13,19 +13,22 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/v1")
-public class UserControllerV1 {
-
+public class UserControllerV1
+{
     private UserServiceV1 userService;
 
     @Autowired
-    public UserControllerV1(UserServiceV1 userService) {
+    public UserControllerV1(UserServiceV1 userService)
+    {
         this.userService = userService;
     }
 
     @RequestMapping(path = "/me")
-    public ResponseEntity me(Principal principal) {
+    public ResponseEntity me(Principal principal)
+    {
         User user = null;
-        if(principal != null) {
+        if(principal != null)
+        {
             user = userService.getUserByUsername(principal.getName());
         }
 

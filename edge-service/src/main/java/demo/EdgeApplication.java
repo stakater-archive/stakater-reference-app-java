@@ -15,16 +15,19 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableZuulProxy
 @EnableResourceServer
 @EnableHystrix
-public class EdgeApplication {
-
-    public static void main(String[] args) {
+public class EdgeApplication
+{
+    public static void main(String[] args)
+    {
         SpringApplication.run(EdgeApplication.class, args);
     }
 
     @Configuration
-    public static class RestSecurityConfig extends WebSecurityConfigurerAdapter {
+    public static class RestSecurityConfig extends WebSecurityConfigurerAdapter
+    {
         @Override
-        protected void configure(HttpSecurity http) throws Exception {
+        protected void configure(HttpSecurity http) throws Exception
+        {
             http.csrf().disable();
         }
     }

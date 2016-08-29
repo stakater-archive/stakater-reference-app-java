@@ -36,8 +36,8 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {InventoryApplication.class})
 @ActiveProfiles(profiles = "test")
-public class InventoryApplicationTests {
-
+public class InventoryApplicationTests
+{
     private Logger log = LoggerFactory.getLogger(InventoryApplicationTests.class);
     private Boolean neo4jConnection = true;
 
@@ -63,21 +63,25 @@ public class InventoryApplicationTests {
     private Neo4jConfiguration neo4jConfiguration;
 
     @Before
-    public void setup() {
-        try {
+    public void setup()
+    {
+        try
+        {
             neo4jConfiguration.getSession().query(
                     "MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n, r;", new HashMap<>())
                     .queryResults();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             neo4jConnection = false;
         }
     }
 
     @Test
-    public void inventoryTest() {
-        if(neo4jConnection) {
-            Warehouse warehouse = new Warehouse("Pivotal SF");
-
+    public void inventoryTest()
+    {
+        if(neo4jConnection)
+        {
             List<Product> products = Arrays.asList(
 
                     new Product("Best. Cloud. Ever. (T-Shirt, Men's Large)", "SKU-24642", "<p>Do you love your cloud platform? " +
@@ -97,6 +101,7 @@ public class InventoryApplicationTests {
                             "4 nines of <em>re-washability</em></p>", 14.99),
 
                     new Product("We're gonna need a bigger VM (T-Shirt, Women's Small)", "SKU-12464", 13.99),
+
                     new Product("cf push awesome (Hoodie, Men's Medium)", "SKU-64233",
                             "<p>One of the great natives of the cloud once said \"<em>" +
                                     "Production is the happiest place on earth for us - it's better than Disneyland</em>\". " +
@@ -147,6 +152,8 @@ public class InventoryApplicationTests {
 
             log.info(warehouseAddress.toString());
             log.info(shipToAddress.toString());
+
+            Warehouse warehouse = new Warehouse("Pivotal SF");
 
             warehouse.setAddress(warehouseAddress);
             warehouse = warehouseRepository.save(warehouse);
